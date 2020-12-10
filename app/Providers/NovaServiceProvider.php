@@ -5,6 +5,7 @@ namespace App\Providers;
 use Anaseqal\NovaImport\NovaImport;
 use App\Nova\Mail;
 use App\Nova\User;
+use App\Nova\Recipient;
 use Illuminate\Support\Facades\Gate;
 use Laravel\Nova\Cards\Help;
 use Laravel\Nova\Nova;
@@ -104,6 +105,7 @@ class NovaServiceProvider extends NovaApplicationServiceProvider
     {
         Nova::resources([
             User::class,
+            Recipient::class,
             Mail::class
         ]);
     }

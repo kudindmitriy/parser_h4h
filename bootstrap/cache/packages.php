@@ -27,6 +27,20 @@
       0 => 'Fruitcake\\Cors\\CorsServiceProvider',
     ),
   ),
+  'inspheric/nova-email-field' => 
+  array (
+    'providers' => 
+    array (
+      0 => 'Inspheric\\Fields\\EmailFieldServiceProvider',
+    ),
+  ),
+  'inspheric/nova-indicator-field' => 
+  array (
+    'providers' => 
+    array (
+      0 => 'Inspheric\\Fields\\IndicatorFieldServiceProvider',
+    ),
+  ),
   'laravel/nova' => 
   array (
     'providers' => 
@@ -61,6 +75,13 @@
     'providers' => 
     array (
       0 => 'Carbon\\Laravel\\ServiceProvider',
+    ),
+  ),
+  'sloveniangooner/searchable-select' => 
+  array (
+    'providers' => 
+    array (
+      0 => 'Sloveniangooner\\SearchableSelect\\FieldServiceProvider',
     ),
   ),
 );

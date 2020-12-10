@@ -3,32 +3,35 @@
 namespace App\Nova;
 
 use Illuminate\Http\Request;
+use Bissolli\NovaPhoneField\PhoneNumber;
 use Laravel\Nova\Fields\ID;
 use Laravel\Nova\Fields\Text;
-use Laravel\Nova\Resource;
+use Inspheric\Fields\Email;
 
-class Mail extends Resource
+
+class Recipient extends Resource
 {
     /**
      * The model the resource corresponds to.
      *
      * @var string
      */
-    public static $model = 'App\Models\Mail';
+    public static $model = 'App\Models\Recipient';
 
     /**
      * The single value that should be used to represent the resource when being displayed.
      *
      * @var string
      */
-    public static $title = 'title';
+    public static $title = 'id';
+
     /**
      * The columns that should be searched.
      *
      * @var array
      */
     public static $search = [
-        'id', 'title', 'text'
+        'id', 'name', 'surname', 'phone', 'email',
     ];
 
     /**
@@ -41,13 +44,23 @@ class Mail extends Resource
     {
         return [
             //ID::make()->sortable(),
-            Text::make('Title')
+            Text::make('Name')
                 ->sortable()
-                ->rules('required', 'max:255'),
+                ->rules('max:255'),
 
-            Text::make('Text')
+            Text::make('Surname')
                 ->sortable()
-                ->rules('required', 'max:255')
+                ->rules('max:255'),
+
+            PhoneNumber::make('Phone'),
+
+            Email::make('Email')
+                ->alwaysClickable()
+                ->sortable()
+                ->rules('required', 'email', 'max:254')
+                ->creationRules('unique:users,email')
+                ->updateRules('unique:users,email,{{resourceId}}'),
+
         ];
     }
 
@@ -92,6 +105,9 @@ class Mail extends Resource
      */
     public function actions(Request $request)
     {
-        return [];
+        return [
+            new Actions\ImportRecipients,
+            new Actions\EmailSpam
+        ];
     }
 }

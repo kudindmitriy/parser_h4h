@@ -9,10 +9,10 @@ use Illuminate\Queue\SerializesModels;
 use Illuminate\Queue\InteractsWithQueue;
 use Laravel\Nova\Fields\File;
 
-use App\Imports\UsersImport;
+use App\Imports\RecipientsImport;
 use Maatwebsite\Excel\Facades\Excel;
 
-class ImportUsers extends Action
+class ImportRecipients extends Action
 {
     use InteractsWithQueue, Queueable, SerializesModels;
 
@@ -29,7 +29,7 @@ class ImportUsers extends Action
      * @return string
      */
     public function name() {
-        return __('Import Users');
+        return __('Import Recipients');
     }
 
     /**
@@ -37,7 +37,7 @@ class ImportUsers extends Action
      */
     public function uriKey() :string
     {
-        return 'import-users';
+        return 'import-recipients';
     }
 
     /**
@@ -48,7 +48,7 @@ class ImportUsers extends Action
      */
     public function handle(ActionFields $fields)
     {
-        Excel::import(new UsersImport, $fields->file);
+        Excel::import(new RecipientsImport, $fields->file);
 
         return Action::message('It worked!');
     }
