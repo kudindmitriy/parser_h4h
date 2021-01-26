@@ -4,13 +4,13 @@
     'name' => 'Laravel',
     'env' => 'local',
     'debug' => true,
-    'url' => 'http://127.0.0.1:8001',
+    'url' => 'http://localhost',
     'asset_url' => NULL,
     'timezone' => 'UTC',
     'locale' => 'en',
     'fallback_locale' => 'en',
     'faker_locale' => 'en_US',
-    'key' => 'base64:4aF/E5/x74F7m1I0MliA8ohMAUomHfOaCLLsI/h4cKc=',
+    'key' => 'base64:L7CB2xQI07bDCCnJK1foIwstapNRGRkXYulpxx4WyT8=',
     'cipher' => 'AES-256-CBC',
     'providers' => 
     array (
@@ -179,7 +179,7 @@
       'file' => 
       array (
         'driver' => 'file',
-        'path' => '/home/alexander/www/parser_h4h/storage/framework/cache/data',
+        'path' => '/home/developer/www/parser/parser_h4h/storage/framework/cache/data',
       ),
       'memcached' => 
       array (
@@ -256,7 +256,7 @@
       array (
         'driver' => 'sqlite',
         'url' => NULL,
-        'database' => 'laravel',
+        'database' => 'h4hparser',
         'prefix' => '',
         'foreign_key_constraints' => true,
       ),
@@ -266,7 +266,7 @@
         'url' => NULL,
         'host' => '127.0.0.1',
         'port' => '3306',
-        'database' => 'laravel',
+        'database' => 'h4hparser',
         'username' => 'root',
         'password' => 'root',
         'unix_socket' => '',
@@ -283,7 +283,7 @@
         'url' => NULL,
         'host' => '127.0.0.1',
         'port' => '3306',
-        'database' => 'laravel',
+        'database' => 'h4hparser',
         'username' => 'root',
         'password' => 'root',
         'charset' => 'utf8',
@@ -298,7 +298,7 @@
         'url' => NULL,
         'host' => '127.0.0.1',
         'port' => '3306',
-        'database' => 'laravel',
+        'database' => 'h4hparser',
         'username' => 'root',
         'password' => 'root',
         'charset' => 'utf8',
@@ -342,13 +342,13 @@
       'local' => 
       array (
         'driver' => 'local',
-        'root' => '/home/alexander/www/parser_h4h/storage/app',
+        'root' => '/home/developer/www/parser/parser_h4h/storage/app',
       ),
       'public' => 
       array (
         'driver' => 'local',
-        'root' => '/home/alexander/www/parser_h4h/storage/app/public',
-        'url' => 'http://127.0.0.1:8001/storage',
+        'root' => '/home/developer/www/parser/parser_h4h/storage/app/public',
+        'url' => '/storage',
         'visibility' => 'public',
       ),
       's3' => 
@@ -364,7 +364,7 @@
     ),
     'links' => 
     array (
-      '/home/alexander/www/parser_h4h/public/storage' => '/home/alexander/www/parser_h4h/storage/app/public',
+      '/home/developer/www/parser/parser_h4h/public/storage' => '/home/developer/www/parser/parser_h4h/storage/app/public',
     ),
   ),
   'flare' => 
@@ -437,13 +437,13 @@
       'single' => 
       array (
         'driver' => 'single',
-        'path' => '/home/alexander/www/parser_h4h/storage/logs/laravel.log',
+        'path' => '/home/developer/www/parser/parser_h4h/storage/logs/laravel.log',
         'level' => 'debug',
       ),
       'daily' => 
       array (
         'driver' => 'daily',
-        'path' => '/home/alexander/www/parser_h4h/storage/logs/laravel.log',
+        'path' => '/home/developer/www/parser/parser_h4h/storage/logs/laravel.log',
         'level' => 'debug',
         'days' => 14,
       ),
@@ -493,71 +493,39 @@
       ),
       'emergency' => 
       array (
-        'path' => '/home/alexander/www/parser_h4h/storage/logs/laravel.log',
+        'path' => '/home/developer/www/parser/parser_h4h/storage/logs/laravel.log',
       ),
     ),
   ),
   'mail' => 
   array (
-    'default' => 'smtp',
-    'mailers' => 
-    array (
-      'smtp' => 
-      array (
-        'transport' => 'smtp',
-        'host' => 'smtp.mailtrap.io',
-        'port' => '2525',
-        'encryption' => NULL,
-        'username' => NULL,
-        'password' => NULL,
-        'timeout' => NULL,
-      ),
-      'ses' => 
-      array (
-        'transport' => 'ses',
-      ),
-      'mailgun' => 
-      array (
-        'transport' => 'mailgun',
-      ),
-      'postmark' => 
-      array (
-        'transport' => 'postmark',
-      ),
-      'sendmail' => 
-      array (
-        'transport' => 'sendmail',
-        'path' => '/usr/sbin/sendmail -bs',
-      ),
-      'log' => 
-      array (
-        'transport' => 'log',
-        'channel' => NULL,
-      ),
-      'array' => 
-      array (
-        'transport' => 'array',
-      ),
-    ),
+    'driver' => 'smtp',
+    'host' => 'smtp.mailtrap.io',
+    'port' => '2525',
     'from' => 
     array (
-      'address' => NULL,
-      'name' => 'Laravel',
+      'address' => 'hello@example.com',
+      'name' => 'Example',
     ),
+    'encryption' => 'tls',
+    'username' => 'cf84517bb2088e',
+    'password' => '70ac40a2f6cd91',
+    'sendmail' => '/usr/sbin/sendmail -bs',
     'markdown' => 
     array (
       'theme' => 'default',
       'paths' => 
       array (
-        0 => '/home/alexander/www/parser_h4h/resources/views/vendor/mail',
+        0 => '/home/developer/www/parser/parser_h4h/resources/views/vendor/mail',
       ),
     ),
+    'log_channel' => NULL,
   ),
   'nova' => 
   array (
     'name' => 'Laravel',
     'domain' => NULL,
-    'url' => 'http://127.0.0.1:8001',
+    'url' => '/',
     'path' => '/admin',
     'guard' => NULL,
     'passwords' => NULL,
@@ -650,7 +618,7 @@
     'lifetime' => '120',
     'expire_on_close' => false,
     'encrypt' => false,
-    'files' => '/home/alexander/www/parser_h4h/storage/framework/sessions',
+    'files' => '/home/developer/www/parser/parser_h4h/storage/framework/sessions',
     'connection' => NULL,
     'table' => 'sessions',
     'store' => NULL,
@@ -688,9 +656,9 @@
   array (
     'paths' => 
     array (
-      0 => '/home/alexander/www/parser_h4h/resources/views',
+      0 => '/home/developer/www/parser/parser_h4h/resources/views',
     ),
-    'compiled' => '/home/alexander/www/parser_h4h/storage/framework/views',
+    'compiled' => '/home/developer/www/parser/parser_h4h/storage/framework/views',
   ),
   'excel' => 
   array (
@@ -792,7 +760,7 @@
     ),
     'temporary_files' => 
     array (
-      'local_path' => '/home/alexander/www/parser_h4h/storage/framework/laravel-excel',
+      'local_path' => '/home/developer/www/parser/parser_h4h/storage/framework/laravel-excel',
       'remote_disk' => NULL,
       'remote_prefix' => NULL,
       'force_resync_remote' => NULL,

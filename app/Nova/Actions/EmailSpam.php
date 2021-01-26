@@ -2,14 +2,13 @@
 
 namespace App\Nova\Actions;
 
+use App\Mail\SendSpam;
 use Illuminate\Bus\Queueable;
-use Illuminate\Contracts\Queue\ShouldQueue;
 use Illuminate\Queue\InteractsWithQueue;
 use Illuminate\Support\Collection;
+use Illuminate\Support\Facades\Mail;
 use Laravel\Nova\Actions\Action;
 use Laravel\Nova\Fields\ActionFields;
-use Laravel\Nova\Fields\Text;
-use Laravel\Nova\Fields\Select;
 
 use Sloveniangooner\SearchableSelect\SearchableSelect;
 
@@ -27,9 +26,15 @@ class EmailSpam extends Action
      */
     public function handle(ActionFields $fields, Collection $models)
     {
+        foreach ($models as $model) {
+            Mail::to( $model->email )->send(new SendSpam());
 
+            if ( Mail::failures() ) {
+                return Action::danger('Messages not sent, something went wrong!');
+            }
+        }
 
-        return Action::message('It worked!');
+        return Action::message('Messages sent successfully!');
     }
 
     /**
@@ -44,12 +49,3 @@ class EmailSpam extends Action
         ];
     }
 }
-
-/*
-https://sendpulse.ua/
-https://mailchimp.com/
-https://www.getresponse.ru/
-https://www.sendinblue.com/
-
-https://www.wpbeginner.com/showcase/best-email-marketing-services/
-*/
